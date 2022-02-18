@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\LevelParserStarter.cs" />
-     <Compile Include="Assets\Scripts\LevelParser (Updated).cs" />
+     <Compile Include="Assets\Scripts\LevelParser.cs" />
      <None Include="Assets\Resources\Test.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.28f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
