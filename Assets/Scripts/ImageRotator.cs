@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ImageRotator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed = 2f;
+    public float degrees = 90f;
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.RotateAround(transform.position, transform.up, Time.deltaTime * degrees * speed);
     }
 }
