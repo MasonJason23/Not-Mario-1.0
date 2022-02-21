@@ -8,11 +8,20 @@ public class MouseRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        if (Physics.Raycast(mouseRay, out RaycastHit hit))
+        if (!Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Hit!");
+            // Debug.Log("Primary Btn not clicked");
+        }
+        else
+        {
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(mouseRay, out RaycastHit hit);
+
+            if (hit.collider != null)
+            {
+                // Debug.Log(hit);
+                Destroy(hit.transform.gameObject);
+            }
         }
     }
 }
