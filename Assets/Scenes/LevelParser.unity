@@ -1291,7 +1291,7 @@ GameObject:
   - component: {fileID: 1189021595}
   - component: {fileID: 1189021597}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,8 +1366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0487cbb2878b6a24f824ad354ade742c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  degrees: 90
 --- !u!1 &1226843115
 GameObject:
   m_ObjectHideFlags: 0

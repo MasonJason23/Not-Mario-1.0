@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ImageRotator : MonoBehaviour
 {
-    public float speed = 2f;
-    public float degrees = 90f;
+    private float speed = 5f;
+    private float d = 90f;
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.position, transform.up, Time.deltaTime * degrees * speed);
+        transform.RotateAround(transform.position, transform.up, Time.deltaTime * d * speed);
     }
 }

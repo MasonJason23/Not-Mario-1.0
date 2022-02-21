@@ -7,6 +7,7 @@ using TMPro;
 public class MouseRaycast : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coins;
+    private int lives = 3;
     private int coinTotal = 0;
     
     // Update is called once per frame
@@ -23,16 +24,22 @@ public class MouseRaycast : MonoBehaviour
 
             if (hit.collider == null)
             {
-                
+                // Empty Space
             }
             else if (hit.collider.tag.Equals("Brick"))
             {
-                Debug.Log("Brick Destroyed");
+                // Debug.Log("Brick Destroyed");
                 Destroy(hit.transform.gameObject);
             }
             else if (hit.collider.tag.Equals("?"))
             {
-                Debug.Log("\'?\' Block Hit");
+                if (coinTotal == 99)
+                {
+                    coinTotal = 0;
+                    lives++;
+                }
+                
+                // Debug.Log("\'?\' Block Hit");
                 coinTotal++;
                 if (coinTotal.ToString().Length < 2)
                 {
