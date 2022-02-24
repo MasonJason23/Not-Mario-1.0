@@ -38,13 +38,10 @@ public class MainCharacterController : MonoBehaviour
         {
             rbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        // else if ()
-        // {
-            /*
-             * TODO
-             * Implement extended jump when space bar is held
-             */
-        // }
+        else if (rbody.velocity.y > 0f && Input.GetKey(KeyCode.Space))
+        {
+            rbody.AddForce(Vector3.up * longJumpForce, ForceMode.Force);
+        }
         
         // Capping the character's speed limit
         if (Mathf.Abs(rbody.velocity.x) > maxRunSpeed)
