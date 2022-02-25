@@ -13,6 +13,7 @@ public class MainCharacterController : MonoBehaviour
     
     private Rigidbody rbody;
     private Collider collider;
+    private Animator animComp;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class MainCharacterController : MonoBehaviour
         // Initialize variable components
         rbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        animComp = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class MainCharacterController : MonoBehaviour
         // Checking to make sure the player is on the ground in order to jump
         float castDistance = collider.bounds.extents.y + 0.1f;
         grounded = Physics.Raycast(transform.position, Vector3.down, castDistance);
+        Debug.DrawRay(transform.position, Vector3.down * castDistance);
         
         // Move left or right by applying force
         float axis = Input.GetAxis("Horizontal");
@@ -56,5 +59,8 @@ public class MainCharacterController : MonoBehaviour
             float updatedX = rbody.velocity.x * (1f - Time.deltaTime * reducingVelocity);
             rbody.velocity = new Vector3(updatedX, rbody.velocity.y, rbody.velocity.z);
         }
+        
+        //
+        animComp.SetFloat("Speed", rbody.velocity.magnitude);
     }
 }
