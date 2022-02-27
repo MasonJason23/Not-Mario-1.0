@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Stone
   - '?'
+  - Barrier
   layers:
   - Default
   - TransparentFX

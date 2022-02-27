@@ -9,6 +9,7 @@ public class LevelParser : MonoBehaviour
     public GameObject Brick;
     public GameObject QuestionBox;
     public GameObject Stone;
+    public GameObject Barrier;
     public Transform levelRoot;
 
     // --------------------------------------------------------------------------
@@ -78,6 +79,10 @@ public class LevelParser : MonoBehaviour
                     case '?':
                         var questionBlock = Instantiate(QuestionBox, levelRoot, true);
                         questionBlock.transform.position = new Vector3(column, row, 0f);
+                        break;
+                    case 'B':
+                        var barrierBlock = Instantiate(Barrier, levelRoot, true);
+                        Barrier.transform.position = new Vector3(column, row, 0f);
                         break;
                 }
                 column++;
