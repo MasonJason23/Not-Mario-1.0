@@ -2333,12 +2333,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: maxRunSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: longJumpForce
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: reducingVelocity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_Height
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074157, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074157, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8894304745792270271, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_Name
