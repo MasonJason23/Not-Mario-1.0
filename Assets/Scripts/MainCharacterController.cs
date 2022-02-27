@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -19,7 +20,13 @@ public class MainCharacterController : MonoBehaviour
     // Jump Buffer Variables
     private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
+    
+    // For User Interface
+    [SerializeField] private TextMeshProUGUI coins;
+    private int lives = 3;
+    private int coinTotal = 0;
 
+    // Components
     private Rigidbody rbody;
     private Collider collider;
     private Animator animComp;
