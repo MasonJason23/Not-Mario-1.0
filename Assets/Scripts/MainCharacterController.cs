@@ -10,6 +10,7 @@ public class MainCharacterController : MonoBehaviour
     public float reducingVelocity = 3f;
     public float longJumpForce = 3f;
     public bool grounded;
+    public bool rotated;
     
     private Rigidbody rbody;
     private Collider collider;
@@ -36,6 +37,26 @@ public class MainCharacterController : MonoBehaviour
         float axis = Input.GetAxis("Horizontal");
         rbody.AddForce(Vector3.right * axis * runForce, ForceMode.Force);
 
+        if (Input.GetKey(KeyCode.LeftArrow) && rbody.velocity.magnitude > 0.1f && !rotated)
+        {
+            rotated = true;
+            transform.Rotate(0f, 180f, 0f);
+        }
+        else if (rotated && Input.GetKey(KeyCode.RightArrow))
+        {
+            rotated = false;
+            transform.Rotate(0f, 180f, 0f);
+        }
+
+        if (rbody.velocity.magnitude > 0.1f)
+        {
+            animComp.SetBool("Moving", true);
+        }
+        else
+        {
+            animComp.SetBool("Moving", false);
+        }
+
         // Jump with two parameters (character is on the ground and space bar is pressed)
         if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -59,8 +80,5 @@ public class MainCharacterController : MonoBehaviour
             float updatedX = rbody.velocity.x * (1f - Time.deltaTime * reducingVelocity);
             rbody.velocity = new Vector3(updatedX, rbody.velocity.y, rbody.velocity.z);
         }
-        
-        //
-        animComp.SetFloat("Speed", rbody.velocity.magnitude);
     }
 }
