@@ -2299,7 +2299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8080930691806967045, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.62
+      value: 2.87
       objectReference: {fileID: 0}
     - target: {fileID: 8080930691806967045, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2334,6 +2334,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: coins
+      value: 
+      objectReference: {fileID: 1536128776}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: jumpForce
       value: 10
       objectReference: {fileID: 0}
@@ -2343,15 +2347,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: longJumpForce
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: reducingVelocity
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_Height
-      value: 2.5
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: m_Center.y
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_Material

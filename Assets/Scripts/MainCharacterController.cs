@@ -12,6 +12,7 @@ public class MainCharacterController : MonoBehaviour
     public float longJumpForce = 3f;
     public bool grounded;
     public bool rotated;
+    public bool hitAbove;
 
     // Coyote Time Variables
     private float coyoteTime = 0.2f;
@@ -30,6 +31,8 @@ public class MainCharacterController : MonoBehaviour
     private Rigidbody rbody;
     private Collider collider;
     private Animator animComp;
+    private float castDistance;
+    private float coinCooldown = 1f;
     
     // Start is called before the first frame update
     void Start()
@@ -38,19 +41,47 @@ public class MainCharacterController : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         animComp = GetComponent<Animator>();
+        castDistance = collider.bounds.extents.y * 0.15f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Checking to make sure the player is on the ground in order to jump
-        float castDistance = collider.bounds.extents.y * 0.1f;
-        grounded = Physics.Raycast(transform.position, Vector3.down, castDistance);
+        // Function that focuses on player movement
+        movement();
+        
+        // Function that focuses on character animation and look direction
+        model();
+        
+        // Function that focuses on player jump mechanics
+        jump();
 
+        blockHit();
+    }
+
+    void movement()
+    {
         // Move left or right by applying force
         float axis = Input.GetAxis("Horizontal");
         rbody.AddForce(Vector3.right * axis * runForce, ForceMode.Force);
+        
+        // Capping the character's speed limit
+        if (Mathf.Abs(rbody.velocity.x) > maxRunSpeed)
+        {
+            float newX = maxRunSpeed * Mathf.Sign(rbody.velocity.x);
+            rbody.velocity = new Vector3(newX, rbody.velocity.y, rbody.velocity.z);
+        }
 
+        // Decaying velocity for main character after force is added to tho left or right
+        if (Mathf.Abs(axis) < 0.1f)
+        {
+            float updatedX = rbody.velocity.x * (1f - Time.deltaTime * reducingVelocity);
+            rbody.velocity = new Vector3(updatedX, rbody.velocity.y, rbody.velocity.z);
+        }
+    }
+
+    void model()
+    {
         // Rotates player to look left or right based on arrow keys pressed
         if (Input.GetKey(KeyCode.LeftArrow) && rbody.velocity.magnitude > 0.1f && !rotated)
         {
@@ -72,7 +103,13 @@ public class MainCharacterController : MonoBehaviour
         {
             animComp.SetBool("Moving", false);
         }
-        
+    }
+    
+    void jump()
+    {
+        // Checking to make sure the player is on the ground in order to jump
+        grounded = Physics.Raycast(transform.position, Vector3.down, castDistance);
+
         // Updating coyote time variables
         if (grounded)
         {
@@ -102,24 +139,48 @@ public class MainCharacterController : MonoBehaviour
         }
         else if (rbody.velocity.y > 0f && Input.GetKey(KeyCode.Space))
         {
-            rbody.AddForce(Vector3.up * longJumpForce, ForceMode.Force);
+            rbody.AddForce(Vector3.up * longJumpForce, ForceMode.Acceleration);
 
             coyoteTimeCounter = 0f;
         }
-        
-        
-        // Capping the character's speed limit
-        if (Mathf.Abs(rbody.velocity.x) > maxRunSpeed)
-        {
-            float newX = maxRunSpeed * Mathf.Sign(rbody.velocity.x);
-            rbody.velocity = new Vector3(newX, rbody.velocity.y, rbody.velocity.z);
-        }
+    }
 
-        // Decaying velocity for main character after force is added to tho left or right
-        if (Mathf.Abs(axis) < 0.1f)
-        {
-            float updatedX = rbody.velocity.x * (1f - Time.deltaTime * reducingVelocity);
-            rbody.velocity = new Vector3(updatedX, rbody.velocity.y, rbody.velocity.z);
-        }
+    void blockHit()
+    {
+        // Checking if player hit block above itself
+        hitAbove = Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, castDistance);
+        // Debug.DrawRay(transform.position, Vector3.up * 2.37f);
+
+        // Ray rayUp = new Ray(transform.position, Vector3.up * castDistance);
+        // Physics.Raycast(rayUp, out RaycastHit hit);
+        //
+        // if (hit.collider == null)
+        // {
+        //     // Empty Space
+        // }
+        // else if (hit.collider.tag.Equals("?") && !grounded && hitAbove)
+        // {
+        //     if (coinTotal == 99)
+        //     {
+        //         coinTotal = 0;
+        //         lives++;
+        //     }
+        //         
+        //     Debug.Log("\'?\' Block Hit");
+        //     coinTotal++;
+        //     if (coinTotal.ToString().Length < 2)
+        //     {
+        //         coins.text = "0";
+        //         coins.text += coinTotal.ToString();
+        //     }
+        //     else
+        //     {
+        //         coins.text = coinTotal.ToString();
+        //     }
+        // }
+        // else
+        // {
+        //     // Empty Space
+        // }
     }
 }
