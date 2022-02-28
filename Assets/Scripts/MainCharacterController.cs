@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MainCharacterController : MonoBehaviour
 {
+    // Public Variables
     public float runForce = 10f;
     public float jumpForce = 10f;
     public float maxRunSpeed = 6f;
@@ -17,6 +18,11 @@ public class MainCharacterController : MonoBehaviour
     public bool hitAbove;
     public static bool gameEndFlag;
     public bool nextLevel;
+
+    // Components
+    public AudioClip jumpAudioClip;
+    public AudioClip coinAudioClip;
+    public AudioClip breakBrickAudioClip;
 
     // Coyote Time Variables
     private float coyoteTime = 0.2f;
@@ -37,6 +43,7 @@ public class MainCharacterController : MonoBehaviour
     private Rigidbody rbody;
     private Collider collider;
     private Animator animComp;
+    private AudioSource audioSource;
     private float castDistance;
     [SerializeField] private Transform startingPos;
     
@@ -47,7 +54,8 @@ public class MainCharacterController : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         animComp = GetComponent<Animator>();
-        castDistance = collider.bounds.extents.y * 0.15f;
+        audioSource = GetComponent<AudioSource>();
+        castDistance = collider.bounds.extents.y * 0.17f;
     }
 
     // Update is called once per frame
@@ -170,6 +178,9 @@ public class MainCharacterController : MonoBehaviour
         // Jump. Using coyote time and jump buffering + extended jump when space is held
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
+            audioSource.clip = jumpAudioClip;
+            audioSource.Play();
+            
             rbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
             jumpBufferCounter = 0f;
@@ -186,6 +197,9 @@ public class MainCharacterController : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("?") && hitAbove)
         {
+            audioSource.clip = coinAudioClip;
+            audioSource.Play();
+            
             if (coinTotal == 99)
             {
                 coinTotal = 0;
@@ -215,6 +229,9 @@ public class MainCharacterController : MonoBehaviour
         }
         else if (collision.gameObject.tag.Equals("Brick") && hitAbove)
         {
+            audioSource.clip = breakBrickAudioClip;
+            audioSource.Play();
+            
             Destroy(collision.transform.gameObject);
 
             scoreTotal += 100;

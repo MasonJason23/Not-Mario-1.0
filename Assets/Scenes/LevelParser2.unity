@@ -21641,7 +21641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: jumpForce
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: maxRunSpeed
@@ -21652,6 +21652,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1710498954}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: coinAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b606779cce6e56a4596be1e48a2bbc0f, type: 3}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: jumpAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 429134ef5be12854bb208b0915ac25d4, type: 3}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: longJumpForce
       value: 7
       objectReference: {fileID: 0}
@@ -21659,6 +21667,10 @@ PrefabInstance:
       propertyPath: reducingVelocity
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
+      propertyPath: breakBrickAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7ab9703e42435b4da2f4b9296b114b1, type: 3}
     - target: {fileID: 8624255689437074156, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: m_Height
       value: 2.2
