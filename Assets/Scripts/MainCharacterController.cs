@@ -72,7 +72,7 @@ public class MainCharacterController : MonoBehaviour
         // Move left or right by applying force
         float axis = Input.GetAxis("Horizontal");
         rbody.AddForce(Vector3.right * axis * runForce, ForceMode.Force);
-        
+
         // Capping the character's speed limit
         if (Mathf.Abs(rbody.velocity.x) > maxRunSpeed)
         {
@@ -91,12 +91,12 @@ public class MainCharacterController : MonoBehaviour
     void model()
     {
         // Rotates player to look left or right based on arrow keys pressed
-        if (Input.GetKey(KeyCode.LeftArrow) && rbody.velocity.magnitude > 0.1f && !rotated)
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && rbody.velocity.magnitude > 0.1f && !rotated)
         {
             rotated = true;
             transform.Rotate(0f, 180f, 0f);
         }
-        else if (rotated && Input.GetKey(KeyCode.RightArrow))
+        else if (rotated && (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)))
         {
             rotated = false;
             transform.Rotate(0f, 180f, 0f);
