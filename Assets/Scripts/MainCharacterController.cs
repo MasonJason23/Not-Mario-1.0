@@ -6,11 +6,11 @@ using TMPro;
 
 public class MainCharacterController : MonoBehaviour
 {
-    public float runForce = 50f;
-    public float jumpForce = 20f;
-    public float maxRunSpeed = 60f;
-    public float reducingVelocity = 3f;
-    public float longJumpForce = 3f;
+    public float runForce = 10f;
+    public float jumpForce = 10f;
+    public float maxRunSpeed = 8f;
+    public float reducingVelocity = 4f;
+    public float longJumpForce = 6f;
     public bool grounded;
     public bool rotated;
     public bool hitAbove;
@@ -75,6 +75,15 @@ public class MainCharacterController : MonoBehaviour
         float axis = Input.GetAxis("Horizontal");
         rbody.AddForce(Vector3.right * axis * runForce, ForceMode.Force);
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            maxRunSpeed = 12f;
+        }
+        else
+        {
+            maxRunSpeed = 8f;
+        }
+        
         // Capping the character's speed limit
         if (Mathf.Abs(rbody.velocity.x) > maxRunSpeed)
         {
