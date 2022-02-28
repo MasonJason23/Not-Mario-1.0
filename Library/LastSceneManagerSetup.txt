@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/LevelParser2.unity
+- path: Assets/Scenes/LevelParser.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

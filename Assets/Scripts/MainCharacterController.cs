@@ -12,7 +12,7 @@ public class MainCharacterController : MonoBehaviour
     public float jumpForce = 10f;
     public float maxRunSpeed = 6f;
     public float reducingVelocity = 3f;
-    public float longJumpForce = 8f;
+    public float longJumpForce = 9f;
     public bool grounded;
     public bool rotated;
     public bool hitAbove;
