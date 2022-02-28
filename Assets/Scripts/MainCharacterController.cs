@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MainCharacterController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MainCharacterController : MonoBehaviour
     public bool rotated;
     public bool hitAbove;
     public static bool gameEndFlag;
+    public bool nextLevel;
 
     // Coyote Time Variables
     private float coyoteTime = 0.2f;
@@ -51,13 +53,18 @@ public class MainCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (nextLevel)
+        {
+            SceneManager.LoadScene("Scenes/LevelParser2", LoadSceneMode.Single);
+        }
+        
         if (gameEndFlag)
         {
             animComp.SetBool("Moving", false);
             animComp.SetBool("Turbo", false);
             return;
         }
-        
+
         // Function that focuses on player movement
         movement();
         
@@ -227,7 +234,7 @@ public class MainCharacterController : MonoBehaviour
         if (other.gameObject.tag.Equals("Goal"))
         {
             Debug.Log("You Win!");
-            gameEndFlag = true;
+            nextLevel = true;
         }
         if (other.gameObject.tag.Equals("Avoid"))
         {

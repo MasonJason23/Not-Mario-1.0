@@ -2375,11 +2375,11 @@ PrefabInstance:
       objectReference: {fileID: 1226843117}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: runForce
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: jumpForce
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: maxRunSpeed
@@ -2391,7 +2391,7 @@ PrefabInstance:
       objectReference: {fileID: 1710498954}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: longJumpForce
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8624255689437074154, guid: ab66faea74758844bbcd7b350a499357, type: 3}
       propertyPath: reducingVelocity
