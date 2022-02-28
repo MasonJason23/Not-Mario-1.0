@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,7 +57,8 @@ public class MainCharacterController : MonoBehaviour
         // Function that focuses on player jump mechanics
         jump();
 
-        blockHit();
+        // Checking if player hit block above itself
+        hitAbove = Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2.5f);
     }
 
     void movement()
@@ -145,42 +147,26 @@ public class MainCharacterController : MonoBehaviour
         }
     }
 
-    void blockHit()
+    private void OnCollisionEnter(Collision collision)
     {
-        // Checking if player hit block above itself
-        hitAbove = Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, castDistance);
-        // Debug.DrawRay(transform.position, Vector3.up * 2.37f);
-
-        // Ray rayUp = new Ray(transform.position, Vector3.up * castDistance);
-        // Physics.Raycast(rayUp, out RaycastHit hit);
-        //
-        // if (hit.collider == null)
-        // {
-        //     // Empty Space
-        // }
-        // else if (hit.collider.tag.Equals("?") && !grounded && hitAbove)
-        // {
-        //     if (coinTotal == 99)
-        //     {
-        //         coinTotal = 0;
-        //         lives++;
-        //     }
-        //         
-        //     Debug.Log("\'?\' Block Hit");
-        //     coinTotal++;
-        //     if (coinTotal.ToString().Length < 2)
-        //     {
-        //         coins.text = "0";
-        //         coins.text += coinTotal.ToString();
-        //     }
-        //     else
-        //     {
-        //         coins.text = coinTotal.ToString();
-        //     }
-        // }
-        // else
-        // {
-        //     // Empty Space
-        // }
+        if (collision.gameObject.tag.Equals("?") && hitAbove)
+        {
+            if (coinTotal == 99)
+            {
+                coinTotal = 0;
+                lives++;
+            }
+            
+            coinTotal++;
+            if (coinTotal.ToString().Length < 2)
+            {
+                coins.text = "0";
+                coins.text += coinTotal.ToString();
+            }
+            else
+            {
+                coins.text = coinTotal.ToString();
+            }
+        }
     }
 }
