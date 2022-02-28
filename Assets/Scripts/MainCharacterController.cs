@@ -26,8 +26,10 @@ public class MainCharacterController : MonoBehaviour
     
     // For User Interface
     [SerializeField] private TextMeshProUGUI coins;
+    [SerializeField] private TextMeshProUGUI score;
     private int lives = 3;
     private int coinTotal = 0;
+    private int scoreTotal = 0;
 
     // Components
     private Rigidbody rbody;
@@ -173,6 +175,30 @@ public class MainCharacterController : MonoBehaviour
             {
                 coins.text = coinTotal.ToString();
             }
+            
+            scoreTotal += 100;
+            score.text = "";
+            
+            while ((scoreTotal.ToString().Length + score.text.Length)  < 6)
+            {
+                score.text += "0";
+            }
+            
+            score.text += scoreTotal.ToString();
+        }
+        else if (collision.gameObject.tag.Equals("Brick") && hitAbove)
+        {
+            Destroy(collision.transform.gameObject);
+
+            scoreTotal += 100;
+            score.text = "";
+            
+            while ((scoreTotal.ToString().Length + score.text.Length)  < 6)
+            {
+                score.text += "0";
+            }
+            
+            score.text += scoreTotal.ToString();
         }
     }
 
