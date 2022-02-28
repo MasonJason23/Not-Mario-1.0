@@ -2860,14 +2860,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runForce: 10
-  jumpForce: 8
+  jumpForce: 10
   maxRunSpeed: 6
   reducingVelocity: 3
-  longJumpForce: 7
+  longJumpForce: 8
   grounded: 0
   rotated: 0
   hitAbove: 0
   nextLevel: 0
+  jumpAudioClip: {fileID: 0}
+  coinAudioClip: {fileID: 0}
+  breakBrickAudioClip: {fileID: 0}
   coins: {fileID: 0}
   score: {fileID: 0}
   startingPos: {fileID: 0}

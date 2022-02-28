@@ -11,7 +11,7 @@ public class MainCharacterController : MonoBehaviour
     public float runForce = 10f;
     public float jumpForce = 10f;
     public float maxRunSpeed = 6f;
-    public float reducingVelocity = 4f;
+    public float reducingVelocity = 3f;
     public float longJumpForce = 8f;
     public bool grounded;
     public bool rotated;
@@ -55,7 +55,7 @@ public class MainCharacterController : MonoBehaviour
         collider = GetComponent<Collider>();
         animComp = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        castDistance = collider.bounds.extents.y * 0.17f;
+        castDistance = collider.bounds.extents.y * 0.2f;
     }
 
     // Update is called once per frame
@@ -72,6 +72,9 @@ public class MainCharacterController : MonoBehaviour
             animComp.SetBool("Turbo", false);
             return;
         }
+        
+        // Checking if player hit block above itself
+        hitAbove = Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2.5f);
 
         // Function that focuses on player movement
         movement();
@@ -81,9 +84,6 @@ public class MainCharacterController : MonoBehaviour
         
         // Function that focuses on player jump mechanics
         jump();
-
-        // Checking if player hit block above itself
-        hitAbove = Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2.5f);
     }
 
     void movement()
@@ -131,6 +131,15 @@ public class MainCharacterController : MonoBehaviour
         }
 
         // Updates animator controller parameters to do animations when set parameter meets requirements
+        if (!grounded)
+        {
+            animComp.SetBool("Grounded", false);
+        }
+        else
+        {
+            animComp.SetBool("Grounded", true);
+        }
+        
         if (rbody.velocity.magnitude > 0.1f)
         {
             animComp.SetBool("Moving", true);
@@ -153,8 +162,9 @@ public class MainCharacterController : MonoBehaviour
     void jump()
     {
         // Checking to make sure the player is on the ground in order to jump
-        grounded = Physics.Raycast(transform.position, Vector3.down, castDistance);
-
+        // grounded = Physics.Raycast(transform.position, Vector3.down, castDistance);
+        // Now using collision to detect if grounded instead of raycast
+        
         // Updating coyote time variables
         if (grounded)
         {
@@ -187,7 +197,7 @@ public class MainCharacterController : MonoBehaviour
         }
         else if (rbody.velocity.y > 0f && Input.GetKey(KeyCode.Space))
         {
-            rbody.AddForce(Vector3.up * longJumpForce, ForceMode.Acceleration);
+            rbody.AddForce(Vector3.up * longJumpForce, ForceMode.Force);
 
             coyoteTimeCounter = 0f;
         }
@@ -244,6 +254,16 @@ public class MainCharacterController : MonoBehaviour
             
             score.text += scoreTotal.ToString();
         }
+    }
+
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        grounded = true;
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        grounded = false;
     }
 
     private void OnTriggerEnter(Collider other)
