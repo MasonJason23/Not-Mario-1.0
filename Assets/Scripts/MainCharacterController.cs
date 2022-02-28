@@ -33,7 +33,6 @@ public class MainCharacterController : MonoBehaviour
     private Collider collider;
     private Animator animComp;
     private float castDistance;
-    private float coinCooldown = 1f;
     
     // Start is called before the first frame update
     void Start()
