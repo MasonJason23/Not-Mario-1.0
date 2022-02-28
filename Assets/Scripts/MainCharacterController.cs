@@ -10,7 +10,7 @@ public class MainCharacterController : MonoBehaviour
     public float jumpForce = 10f;
     public float maxRunSpeed = 6f;
     public float reducingVelocity = 4f;
-    public float longJumpForce = 6f;
+    public float longJumpForce = 8f;
     public bool grounded;
     public bool rotated;
     public bool hitAbove;
@@ -53,6 +53,8 @@ public class MainCharacterController : MonoBehaviour
     {
         if (gameEndFlag)
         {
+            animComp.SetBool("Moving", false);
+            animComp.SetBool("Turbo", false);
             return;
         }
         

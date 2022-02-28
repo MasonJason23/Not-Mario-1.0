@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\MouseRaycast.cs" />
      <Compile Include="Assets\Scripts\CameraFocusCharacter.cs" />
+     <Compile Include="Assets\Scripts\LevelParser2.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

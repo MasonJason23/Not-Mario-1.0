@@ -3,7 +3,7 @@ using System.IO;
 using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
-public class LevelParser : MonoBehaviour
+public class LevelParser2 : MonoBehaviour
 {
     public string filename;
     public GameObject Rock;
