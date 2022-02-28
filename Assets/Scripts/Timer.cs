@@ -16,6 +16,10 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (MainCharacterController.gameEndFlag)
+        {
+            return;
+        }
         accumulatedTime += Time.deltaTime;
 
         if (accumulatedTime >= 1f)
@@ -25,6 +29,12 @@ public class Timer : MonoBehaviour
 
             var timeTxt = GetComponent<TextMeshProUGUI>();
             timeTxt.text = totalTime.TotalSeconds.ToString();
+        }
+
+        if (totalTime.TotalSeconds <= 0)
+        {
+            Debug.Log("Time is up! You Lose!");
+            MainCharacterController.gameEndFlag = true;
         }
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Stone
   - '?'
   - Barrier
+  - Goal
+  - Avoid
   layers:
   - Default
   - TransparentFX

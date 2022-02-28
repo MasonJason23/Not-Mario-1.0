@@ -14,6 +14,7 @@ public class MainCharacterController : MonoBehaviour
     public bool grounded;
     public bool rotated;
     public bool hitAbove;
+    public static bool gameEndFlag;
 
     // Coyote Time Variables
     private float coyoteTime = 0.2f;
@@ -33,6 +34,7 @@ public class MainCharacterController : MonoBehaviour
     private Collider collider;
     private Animator animComp;
     private float castDistance;
+    [SerializeField] private Transform startingPos;
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,11 @@ public class MainCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameEndFlag)
+        {
+            return;
+        }
+        
         // Function that focuses on player movement
         movement();
         
@@ -166,6 +173,21 @@ public class MainCharacterController : MonoBehaviour
             {
                 coins.text = coinTotal.ToString();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Goal"))
+        {
+            Debug.Log("You Win!");
+            gameEndFlag = true;
+        }
+        if (other.gameObject.tag.Equals("Avoid"))
+        {
+            Debug.Log("You lost a life!");
+            lives -= 1;
+            transform.position = startingPos.position;
         }
     }
 }

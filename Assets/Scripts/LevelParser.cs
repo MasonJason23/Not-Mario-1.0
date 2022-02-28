@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
 public class LevelParser : MonoBehaviour
@@ -10,7 +11,12 @@ public class LevelParser : MonoBehaviour
     public GameObject QuestionBox;
     public GameObject Stone;
     public GameObject Barrier;
+    public GameObject Goal;
+    public GameObject Avoid;
     public Transform levelRoot;
+
+    private string level1Filename = "Test";
+    private string level2Filename = "CustomeLvl";
 
     // --------------------------------------------------------------------------
     void Start()
@@ -29,7 +35,7 @@ public class LevelParser : MonoBehaviour
     // --------------------------------------------------------------------------
     private void LoadLevel()
     {
-        string fileToParse = $"{Application.dataPath}{"/Resources/"}{filename}.txt";
+        string fileToParse = $"{Application.dataPath}{"/Resources/"}{level1Filename}.txt";
         Debug.Log($"Loading level file: {fileToParse}");
         
         Stack<string> levelRows = new Stack<string>();
@@ -83,6 +89,14 @@ public class LevelParser : MonoBehaviour
                     case 'B':
                         var barrierBlock = Instantiate(Barrier, levelRoot, true);
                         Barrier.transform.position = new Vector3(column, row, 0f);
+                        break;
+                    case 'g':
+                        var goalBlock = Instantiate(Goal, levelRoot, true);
+                        Goal.transform.position = new Vector3(column, row, 0f);
+                        break;
+                    case 'A':
+                        var avoidBlock = Instantiate(Avoid, levelRoot, true);
+                        Avoid.transform.position = new Vector3(column, row, 0f);
                         break;
                 }
                 column++;
