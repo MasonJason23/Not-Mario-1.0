@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        totalTime = new TimeSpan(0, 0, 300);
+        totalTime = new TimeSpan(0, 0, 100);
     }
 
     void Update()
