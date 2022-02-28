@@ -8,7 +8,7 @@ public class MainCharacterController : MonoBehaviour
 {
     public float runForce = 10f;
     public float jumpForce = 10f;
-    public float maxRunSpeed = 8f;
+    public float maxRunSpeed = 6f;
     public float reducingVelocity = 4f;
     public float longJumpForce = 6f;
     public bool grounded;
@@ -81,7 +81,7 @@ public class MainCharacterController : MonoBehaviour
         }
         else
         {
-            maxRunSpeed = 8f;
+            maxRunSpeed = 6f;
         }
         
         // Capping the character's speed limit
@@ -121,6 +121,15 @@ public class MainCharacterController : MonoBehaviour
         else
         {
             animComp.SetBool("Moving", false);
+        }
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            animComp.SetBool("Turbo", true);
+        }
+        else
+        {
+            animComp.SetBool("Turbo", false);
         }
     }
     
